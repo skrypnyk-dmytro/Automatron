@@ -16,5 +16,15 @@ namespace Automatron
         {
             InitializeComponent();
         }
+
+        private void quitBtn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void runBtn_Click(object sender, EventArgs e)
+        {
+            Clicker.run(tailURLTbox.Text, (int) instancesQtyNUD.Value);
+        }
     }
 }
