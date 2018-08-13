@@ -1,39 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
+using System.Threading;
 using OpenQA.Selenium.Chrome;
-using static Automatron.Proxies;
 
 namespace Automatron
 {
-    class Clicker
+    public static partial class Clicker
     {
-
-
-        public static void run(int instances, string tailURL)
+        public static void run(string tailURL, int instances)
         {
-            IWebDriver[] drivers; 
-            ChromeOptions options = new ChromeOptions();
-            string proxy = Proxies.get();
-            if (proxy != null)
-            {
-                options.AddArgument(proxy);
-            }
-            
-            options.AddArgument("--user-agent=Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5355d Safari/8536.25");
-            //options.
-            for (int i = 0; i == instances; i++)
-            {
+            var browsers = new List<ChromeDriver>();
 
+            for (int i = 0; i < instances; i++)
+            {
+                if (!String.IsNullOrEmpty(tailURL))
+                {
+                    Runner runner = new Runner(tailURL);
+                    Thread t = new Thread(new ThreadStart(runner.run));
+                    t.Start();
+                }
             }
 
-            IWebDriver driver = new ChromeDriver(options);
-            driver.Url = tailURL;
-            //driver.Close();
         }
-
     }
 }

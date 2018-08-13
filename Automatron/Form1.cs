@@ -18,16 +18,14 @@ namespace Automatron
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void quitBtn_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void runBtn_Click(object sender, EventArgs e)
         {
-
-            Clicker.run((int) this.numericUpDown1.Value, this.textBox1.Text);
+            Clicker.run(tailURLTbox.Text, (int) instancesQtyNUD.Value);
         }
-
     }
 }
