@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automatron", "Automatron\Automatron.csproj", "{A673C0F7-CE0C-42BF-A0E6-26BA08193EF0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{8B00E714-5C2F-4775-9F0D-13D4751AC4A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{38B4E1A7-76DF-4A43-9FBC-00A2A0E22A92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{A673C0F7-CE0C-42BF-A0E6-26BA08193EF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A673C0F7-CE0C-42BF-A0E6-26BA08193EF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A673C0F7-CE0C-42BF-A0E6-26BA08193EF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B00E714-5C2F-4775-9F0D-13D4751AC4A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B00E714-5C2F-4775-9F0D-13D4751AC4A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B00E714-5C2F-4775-9F0D-13D4751AC4A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B00E714-5C2F-4775-9F0D-13D4751AC4A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38B4E1A7-76DF-4A43-9FBC-00A2A0E22A92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38B4E1A7-76DF-4A43-9FBC-00A2A0E22A92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38B4E1A7-76DF-4A43-9FBC-00A2A0E22A92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38B4E1A7-76DF-4A43-9FBC-00A2A0E22A92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
