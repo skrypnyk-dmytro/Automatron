@@ -75,7 +75,11 @@ namespace Automatron
                 try
                 {
                     webDriver = new WebDriver(browser);
+
+                    await webDriver.Options().Timeouts.SetImplicitWait(TimeSpan.FromMinutes(3));
                     webDriver.GoToUrl(tailURLTbox.Text);
+                    var link = await webDriver.FindElementByClassName("uk");
+                    link.Click();
 
                 }
                 catch (Exception ex)
