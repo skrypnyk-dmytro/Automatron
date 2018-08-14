@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Zu.AsyncWebDriver.Remote;
 using Zu.Chrome;
+using Zu.WebBrowser.AsyncInteractions;
 using Zu.WebBrowser.BasicTypes;
 using static Automatron.Clicker;
 
@@ -17,7 +19,7 @@ namespace Automatron
 {
     public partial class Form1 : Form
     {
-        private List<AsyncChromeDriver> browsers = new List<AsyncChromeDriver>();
+        private BindingList<AsyncChromeDriver> browsers = new BindingList<AsyncChromeDriver>();
         private WebDriver webDriver;
         Timer mainTimer = new Timer();
         DateTime clock = new DateTime();
@@ -40,13 +42,18 @@ namespace Automatron
         {
             var width = 600;
             var height = 300;
+            Random random = new Random();
 
             for (int i = 0; i < (int) instancesQtyNUD.Value; i++)
             {
                 // With Proxy// browsers.Add(new AsyncChromeDriver(new ChromeDriverConfig().SetCommandLineArgumets(Proxies.get()).SetWindowSize(width, height)));
-                browsers.Add(new AsyncChromeDriver(new ChromeDriverConfig().SetWindowSize(width, height)));
+                var browser = new AsyncChromeDriver(new ChromeDriverConfig().SetCommandLineArgumets(UserAgent.GetUA(random)).SetWindowSize(width, height));
+                
+                browsers.Add(browser);
+                //Console.WriteLine(UserAgent.GetUA(random));
             }
 
+            listBox1.DataSource = browsers;
 
             foreach (AsyncChromeDriver browser in browsers)
             {
@@ -68,7 +75,10 @@ namespace Automatron
             foreach (AsyncChromeDriver browser in browsers)
             {
                 browser.Close();
+                //browsers.Remove(browser);
             }
+            browsers.Clear();
+            //listBox1.Items.Clear();
         }
 
         private async void button3_Click(object sender, EventArgs e)
@@ -78,16 +88,10 @@ namespace Automatron
                 try
                 {
                     webDriver = new WebDriver(browser);
-
                     await webDriver.Options().Timeouts.SetImplicitWait(TimeSpan.FromMinutes(3));
 
                     webDriver.GoToUrl(tailURLTbox.Text);
                     //var link = await webDriver.FindElementByClassName("uk");
-                    //await link.Click();
-                    //await link.Click();
-                    //await link.Click();
-                    //await link.Click();
-                    //await link.Click();
                     //await link.Click();
 
                 }
@@ -117,10 +121,25 @@ namespace Automatron
 
         private void MainTimer_Tick(object sender, EventArgs e)
         {
-            TimeSpan ts = new TimeSpan(0, 0, 0, 0, 100);
-            clock = clock + ts;
+            //TimeSpan ts = new TimeSpan(0, 0, 0, 0, 100);
+            //clock = clock + ts;
             timerLbl.Text = clock.ToString("yyyy-MM-dd HH:mm:ss.fff",
-                                            CultureInfo.InvariantCulture); ;
+                                            CultureInfo.InvariantCulture);
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+             
+            webDriver = new WebDriver((AsyncChromeDriver)listBox1.SelectedItem);
+            //Zu.WebBrowser.AsyncInteractions.IJavaScriptExecutor js = (Zu.WebBrowser.AsyncInteractions.IJavaScriptExecutor)webDriver;
+            webDriver.ExecuteAsyncScript("alert();");
+
+        }
+
+        private void dateTimePicker1_MouseDown(object sender, MouseEventArgs e)
+        {
+            dateTimePicker1.CustomFormat = "HH:mm:ss";
         }
     }
 }
