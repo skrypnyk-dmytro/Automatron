@@ -37,6 +37,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.timerLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.instancesQtyNUD)).BeginInit();
             this.SuspendLayout();
             // 
@@ -133,11 +135,32 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Instances";
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(302, 108);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 9;
+            this.button4.Text = "Get Time";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // timerLbl
+            // 
+            this.timerLbl.AutoSize = true;
+            this.timerLbl.Location = new System.Drawing.Point(510, 13);
+            this.timerLbl.Name = "timerLbl";
+            this.timerLbl.Size = new System.Drawing.Size(37, 13);
+            this.timerLbl.TabIndex = 10;
+            this.timerLbl.Text = "..........";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(678, 239);
+            this.Controls.Add(this.timerLbl);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -167,6 +190,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label timerLbl;
     }
 }
 
