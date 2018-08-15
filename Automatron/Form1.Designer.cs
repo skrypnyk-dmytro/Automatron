@@ -34,13 +34,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.instancesQtyNUD = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.closeBrowsersBtn = new System.Windows.Forms.Button();
+            this.goToBtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.timerLbl = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.linkTextLbl = new System.Windows.Forms.Label();
+            this.linkTextTBox = new System.Windows.Forms.TextBox();
+            this.clickBtn = new System.Windows.Forms.Button();
+            this.exeptionTBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.instancesQtyNUD)).BeginInit();
             this.SuspendLayout();
             // 
@@ -109,25 +113,25 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // closeBrowsersBtn
             // 
-            this.button2.Location = new System.Drawing.Point(91, 204);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Close";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.closeBrowsersBtn.Location = new System.Drawing.Point(91, 204);
+            this.closeBrowsersBtn.Name = "closeBrowsersBtn";
+            this.closeBrowsersBtn.Size = new System.Drawing.Size(75, 23);
+            this.closeBrowsersBtn.TabIndex = 6;
+            this.closeBrowsersBtn.Text = "Close";
+            this.closeBrowsersBtn.UseVisualStyleBackColor = true;
+            this.closeBrowsersBtn.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // goToBtn
             // 
-            this.button3.Location = new System.Drawing.Point(91, 149);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Goto";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.goToBtn.Location = new System.Drawing.Point(91, 149);
+            this.goToBtn.Name = "goToBtn";
+            this.goToBtn.Size = new System.Drawing.Size(75, 23);
+            this.goToBtn.TabIndex = 7;
+            this.goToBtn.Text = "Goto";
+            this.goToBtn.UseVisualStyleBackColor = true;
+            this.goToBtn.Click += new System.EventHandler(this.button3_Click);
             // 
             // label2
             // 
@@ -140,7 +144,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(302, 120);
+            this.button4.Location = new System.Drawing.Point(392, 10);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 9;
@@ -164,32 +168,71 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(156, 134);
             this.listBox1.TabIndex = 11;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.CustomFormat = " ";
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(302, 75);
+            this.dateTimePicker1.Location = new System.Drawing.Point(253, 10);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.ShowUpDown = true;
             this.dateTimePicker1.Size = new System.Drawing.Size(122, 26);
             this.dateTimePicker1.TabIndex = 12;
             this.dateTimePicker1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dateTimePicker1_MouseDown);
             // 
+            // linkTextLbl
+            // 
+            this.linkTextLbl.AutoSize = true;
+            this.linkTextLbl.Location = new System.Drawing.Point(25, 75);
+            this.linkTextLbl.Name = "linkTextLbl";
+            this.linkTextLbl.Size = new System.Drawing.Size(51, 13);
+            this.linkTextLbl.TabIndex = 14;
+            this.linkTextLbl.Text = "Link Text";
+            // 
+            // linkTextTBox
+            // 
+            this.linkTextTBox.Location = new System.Drawing.Point(91, 75);
+            this.linkTextTBox.Name = "linkTextTBox";
+            this.linkTextTBox.Size = new System.Drawing.Size(333, 20);
+            this.linkTextTBox.TabIndex = 13;
+            this.linkTextTBox.Text = "cliquez ici";
+            // 
+            // clickBtn
+            // 
+            this.clickBtn.Location = new System.Drawing.Point(193, 148);
+            this.clickBtn.Name = "clickBtn";
+            this.clickBtn.Size = new System.Drawing.Size(75, 23);
+            this.clickBtn.TabIndex = 15;
+            this.clickBtn.Text = "Click";
+            this.clickBtn.UseVisualStyleBackColor = true;
+            this.clickBtn.Click += new System.EventHandler(this.clickBtn_Click);
+            // 
+            // exeptionTBox
+            // 
+            this.exeptionTBox.Location = new System.Drawing.Point(12, 253);
+            this.exeptionTBox.Multiline = true;
+            this.exeptionTBox.Name = "exeptionTBox";
+            this.exeptionTBox.ReadOnly = true;
+            this.exeptionTBox.Size = new System.Drawing.Size(654, 182);
+            this.exeptionTBox.TabIndex = 16;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(678, 239);
+            this.ClientSize = new System.Drawing.Size(678, 447);
+            this.Controls.Add(this.exeptionTBox);
+            this.Controls.Add(this.clickBtn);
+            this.Controls.Add(this.linkTextLbl);
+            this.Controls.Add(this.linkTextTBox);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.timerLbl);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.goToBtn);
+            this.Controls.Add(this.closeBrowsersBtn);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.instancesQtyNUD);
             this.Controls.Add(this.label1);
@@ -213,13 +256,17 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown instancesQtyNUD;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button closeBrowsersBtn;
+        private System.Windows.Forms.Button goToBtn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label timerLbl;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label linkTextLbl;
+        private System.Windows.Forms.TextBox linkTextTBox;
+        private System.Windows.Forms.Button clickBtn;
+        private System.Windows.Forms.TextBox exeptionTBox;
     }
 }
 

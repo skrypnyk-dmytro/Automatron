@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Zu.AsyncWebDriver;
 using Zu.AsyncWebDriver.Remote;
 using Zu.Chrome;
 using Zu.WebBrowser.AsyncInteractions;
@@ -23,6 +23,7 @@ namespace Automatron
         private WebDriver webDriver;
         Timer mainTimer = new Timer();
         DateTime clock = new DateTime();
+        Proxies proxies = new Proxies();
         public Form1()
         {
             InitializeComponent();
@@ -47,7 +48,8 @@ namespace Automatron
             for (int i = 0; i < (int) instancesQtyNUD.Value; i++)
             {
                 // With Proxy// browsers.Add(new AsyncChromeDriver(new ChromeDriverConfig().SetCommandLineArgumets(Proxies.get()).SetWindowSize(width, height)));
-                var browser = new AsyncChromeDriver(new ChromeDriverConfig().SetCommandLineArgumets(UserAgent.GetUA(random)).SetWindowSize(width, height));
+
+                var browser = new AsyncChromeDriver(new ChromeDriverConfig().SetCommandLineArgumets(UserAgent.GetUA(random)).SetCommandLineArgumets(proxies.GetProxy(random)).SetWindowSize(width, height));
                 
                 browsers.Add(browser);
                 //Console.WriteLine(UserAgent.GetUA(random));
@@ -91,6 +93,7 @@ namespace Automatron
                     await webDriver.Options().Timeouts.SetImplicitWait(TimeSpan.FromMinutes(3));
 
                     webDriver.GoToUrl(tailURLTbox.Text);
+                    
                     //var link = await webDriver.FindElementByClassName("uk");
                     //await link.Click();
 
@@ -121,25 +124,50 @@ namespace Automatron
 
         private void MainTimer_Tick(object sender, EventArgs e)
         {
-            //TimeSpan ts = new TimeSpan(0, 0, 0, 0, 100);
-            //clock = clock + ts;
+            TimeSpan ts = new TimeSpan(0, 0, 0, 0, 100);
+            clock = clock + ts;
             timerLbl.Text = clock.ToString("yyyy-MM-dd HH:mm:ss.fff",
                                             CultureInfo.InvariantCulture);
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        //private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        //{
             
              
-            webDriver = new WebDriver((AsyncChromeDriver)listBox1.SelectedItem);
-            //Zu.WebBrowser.AsyncInteractions.IJavaScriptExecutor js = (Zu.WebBrowser.AsyncInteractions.IJavaScriptExecutor)webDriver;
-            webDriver.ExecuteAsyncScript("alert();");
+        //    webDriver = new WebDriver((AsyncChromeDriver)listBox1.SelectedItem);
+        //    //Zu.WebBrowser.AsyncInteractions.IJavaScriptExecutor js = (Zu.WebBrowser.AsyncInteractions.IJavaScriptExecutor)webDriver;
+        //    webDriver.ExecuteAsyncScript("alert();");
 
-        }
+        //}
 
         private void dateTimePicker1_MouseDown(object sender, MouseEventArgs e)
         {
             dateTimePicker1.CustomFormat = "HH:mm:ss";
+        }
+
+        private async void clickBtn_Click(object sender, EventArgs e)
+        {
+            foreach (AsyncChromeDriver browser in browsers)
+            {
+                try
+                {
+                    webDriver = new WebDriver(browser);
+                    await webDriver.Options().Timeouts.SetImplicitWait(TimeSpan.FromMinutes(3));
+
+                    var link = await webDriver.FindElementByPartialLinkText(linkTextTBox.Text);
+                    exeptionTBox.Text += link.ToString();
+                    //await link.Click();
+
+                    //var link = await webDriver.FindElementByClassName("uk");
+                    link.Click();
+
+                }
+                catch (Exception ex)
+                {
+                    exeptionTBox.Text = ex.ToString();
+                }
+            }
+            
         }
     }
 }
