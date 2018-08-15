@@ -1,1 +1,2 @@
 ﻿span id = MainPart_lbUsersInLineAheadOfYou
+http://toolsqa.com/selenium-webdriver/c-sharp/how-to-handle-multiple-browsers-in-selenium-csharp/
