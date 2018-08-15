@@ -1,6 +1,6 @@
 ﻿namespace Automatron
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             this.quitBtn = new System.Windows.Forms.Button();
-            this.runBtn = new System.Windows.Forms.Button();
             this.tailURLTbox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.instancesQtyNUD = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
+            this.openBrowserBtn = new System.Windows.Forms.Button();
             this.closeBrowsersBtn = new System.Windows.Forms.Button();
             this.goToBtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
+            this.getTimeBtn = new System.Windows.Forms.Button();
             this.timerLbl = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.linkTextLbl = new System.Windows.Forms.Label();
             this.linkTextTBox = new System.Windows.Forms.TextBox();
             this.clickBtn = new System.Windows.Forms.Button();
             this.exeptionTBox = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.instancesQtyNUD)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // quitBtn
@@ -57,16 +57,6 @@
             this.quitBtn.Text = "Quit";
             this.quitBtn.UseVisualStyleBackColor = true;
             this.quitBtn.Click += new System.EventHandler(this.quitBtn_Click);
-            // 
-            // runBtn
-            // 
-            this.runBtn.Location = new System.Drawing.Point(510, 204);
-            this.runBtn.Name = "runBtn";
-            this.runBtn.Size = new System.Drawing.Size(75, 23);
-            this.runBtn.TabIndex = 1;
-            this.runBtn.Text = "Run";
-            this.runBtn.UseVisualStyleBackColor = true;
-            this.runBtn.Click += new System.EventHandler(this.runBtn_Click);
             // 
             // tailURLTbox
             // 
@@ -103,35 +93,35 @@
             0,
             0});
             // 
-            // button1
+            // openBrowserBtn
             // 
-            this.button1.Location = new System.Drawing.Point(91, 120);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Open";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.openBrowserBtn.Location = new System.Drawing.Point(510, 204);
+            this.openBrowserBtn.Name = "openBrowserBtn";
+            this.openBrowserBtn.Size = new System.Drawing.Size(75, 23);
+            this.openBrowserBtn.TabIndex = 5;
+            this.openBrowserBtn.Text = "Open";
+            this.openBrowserBtn.UseVisualStyleBackColor = true;
+            this.openBrowserBtn.Click += new System.EventHandler(this.OpenBrowserBtn_Click);
             // 
             // closeBrowsersBtn
             // 
-            this.closeBrowsersBtn.Location = new System.Drawing.Point(91, 204);
+            this.closeBrowsersBtn.Location = new System.Drawing.Point(91, 159);
             this.closeBrowsersBtn.Name = "closeBrowsersBtn";
             this.closeBrowsersBtn.Size = new System.Drawing.Size(75, 23);
             this.closeBrowsersBtn.TabIndex = 6;
             this.closeBrowsersBtn.Text = "Close";
             this.closeBrowsersBtn.UseVisualStyleBackColor = true;
-            this.closeBrowsersBtn.Click += new System.EventHandler(this.button2_Click);
+            this.closeBrowsersBtn.Click += new System.EventHandler(this.CloseBrowsersBtn_Click);
             // 
             // goToBtn
             // 
-            this.goToBtn.Location = new System.Drawing.Point(91, 149);
+            this.goToBtn.Location = new System.Drawing.Point(91, 101);
             this.goToBtn.Name = "goToBtn";
             this.goToBtn.Size = new System.Drawing.Size(75, 23);
             this.goToBtn.TabIndex = 7;
             this.goToBtn.Text = "Goto";
             this.goToBtn.UseVisualStyleBackColor = true;
-            this.goToBtn.Click += new System.EventHandler(this.button3_Click);
+            this.goToBtn.Click += new System.EventHandler(this.GotoBtn_Click);
             // 
             // label2
             // 
@@ -142,15 +132,15 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Instances";
             // 
-            // button4
+            // getTimeBtn
             // 
-            this.button4.Location = new System.Drawing.Point(392, 10);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 9;
-            this.button4.Text = "Get Time";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.getTimeBtn.Location = new System.Drawing.Point(392, 10);
+            this.getTimeBtn.Name = "getTimeBtn";
+            this.getTimeBtn.Size = new System.Drawing.Size(75, 23);
+            this.getTimeBtn.TabIndex = 9;
+            this.getTimeBtn.Text = "Get Time";
+            this.getTimeBtn.UseVisualStyleBackColor = true;
+            this.getTimeBtn.Click += new System.EventHandler(this.GetTimeBtn_Click);
             // 
             // timerLbl
             // 
@@ -160,14 +150,6 @@
             this.timerLbl.Size = new System.Drawing.Size(37, 13);
             this.timerLbl.TabIndex = 10;
             this.timerLbl.Text = "..........";
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(510, 38);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(156, 134);
-            this.listBox1.TabIndex = 11;
             // 
             // dateTimePicker1
             // 
@@ -200,7 +182,7 @@
             // 
             // clickBtn
             // 
-            this.clickBtn.Location = new System.Drawing.Point(193, 148);
+            this.clickBtn.Location = new System.Drawing.Point(91, 130);
             this.clickBtn.Name = "clickBtn";
             this.clickBtn.Size = new System.Drawing.Size(75, 23);
             this.clickBtn.TabIndex = 15;
@@ -217,32 +199,40 @@
             this.exeptionTBox.Size = new System.Drawing.Size(654, 182);
             this.exeptionTBox.TabIndex = 16;
             // 
-            // Form1
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(510, 48);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(156, 150);
+            this.dataGridView1.TabIndex = 18;
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(678, 447);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.exeptionTBox);
             this.Controls.Add(this.clickBtn);
             this.Controls.Add(this.linkTextLbl);
             this.Controls.Add(this.linkTextTBox);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.timerLbl);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.getTimeBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.goToBtn);
             this.Controls.Add(this.closeBrowsersBtn);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.openBrowserBtn);
             this.Controls.Add(this.instancesQtyNUD);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tailURLTbox);
-            this.Controls.Add(this.runBtn);
             this.Controls.Add(this.quitBtn);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Automatron";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.instancesQtyNUD)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -251,22 +241,21 @@
         #endregion
 
         private System.Windows.Forms.Button quitBtn;
-        private System.Windows.Forms.Button runBtn;
         private System.Windows.Forms.TextBox tailURLTbox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown instancesQtyNUD;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button openBrowserBtn;
         private System.Windows.Forms.Button closeBrowsersBtn;
         private System.Windows.Forms.Button goToBtn;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button getTimeBtn;
         private System.Windows.Forms.Label timerLbl;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label linkTextLbl;
         private System.Windows.Forms.TextBox linkTextTBox;
         private System.Windows.Forms.Button clickBtn;
         private System.Windows.Forms.TextBox exeptionTBox;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 
