@@ -15,15 +15,13 @@ namespace Server
 
     public partial class Form1 : Form
     {
-        public List<SocketT2h> __ClientSockets { get; set; }
-        private byte[] _buffer = new byte[1024];
-        private Socket _serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        Server server;
 
         public Form1()
         {
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
-            __ClientSockets = new List<SocketT2h>();
+            
         }
 
         private void quitBtn_Click(object sender, EventArgs e)
@@ -44,21 +42,24 @@ namespace Server
         private void SetupServer()
         {
             statusLbl.Text = "Setting up server . . .";
-            _serverSocket.Bind(new IPEndPoint(IPAddress.Any, 11011));
-            _serverSocket.Listen(1);
-            _serverSocket.BeginAccept(new AsyncCallback(AppceptCallback), null);
+            server = new Server(AppceptCallback);
             statusLbl.Text = "Server is started";
         }
 
         private void AppceptCallback(IAsyncResult ar)
         {
-            Socket socket = _serverSocket.EndAccept(ar);
-            __ClientSockets.Add(new SocketT2h(socket));
-            clientsQtyLbl.Text = __ClientSockets.Count.ToString();
+            //Socket socket = _serverSocket.EndAccept(ar);
+            //__ClientSockets.Add(new SocketT2h(socket));
+            
 
-            statusLbl.Text = __ClientSockets.Count.ToString() + " client connected. . .";
+           // statusLbl.Text = __ClientSockets.Count.ToString() + " client connected. . .";
            // socket.BeginReceive(_buffer, 0, _buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveCallback), socket);
-            _serverSocket.BeginAccept(new AsyncCallback(AppceptCallback), null);
+           // _serverSocket.BeginAccept(new AsyncCallback(AppceptCallback), null);
+
+            server.__ClientSockets.Add(new Server.SocketT2h(server._serverSocket.EndAccept(ar)));
+            clientsQtyLbl.Text = server.__ClientSockets.Count.ToString();
+
+
         }
 
     }

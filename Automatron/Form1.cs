@@ -1,17 +1,18 @@
 ﻿using System;
-using System.ComponentModel;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Forms;
 using Zu.AsyncWebDriver.Remote;
 using Zu.Chrome;
 using Zu.WebBrowser.BasicTypes;
+using System.Threading.Tasks;
+
 
 namespace Automatron
 {
     public partial class MainForm : Form
     {
-        private BindingList<AsyncChromeDriver> browsers = new BindingList<AsyncChromeDriver>();
-        private WebDriver webDriver;
+        private List<WebDriver> webDrivers = new List<WebDriver>();
         Timer mainTimer = new Timer();
         DateTime clock = new DateTime();
         Proxies proxies = new Proxies();
@@ -31,17 +32,19 @@ namespace Automatron
                 // With Proxy// browsers.Add(new AsyncChromeDriver(new ChromeDriverConfig().SetCommandLineArgumets(Proxies.get()).SetWindowSize(width, height)));
 
                 var browser = new AsyncChromeDriver(new ChromeDriverConfig().SetCommandLineArgumets(UserAgent.GetUA(random)).SetCommandLineArgumets(proxies.GetProxy(random)).SetWindowSize(width, height));
-                browsers.Add(browser);
+
+                var wd = new WebDriver(browser);
+                webDrivers.Add(wd);
+
                 //Console.WriteLine(UserAgent.GetUA(random));
             }
-            var source = new BindingSource(browsers, null);
-            dataGridView1.DataSource = source;
 
-            foreach (AsyncChromeDriver browser in browsers)
+            for (int i = 0; i < webDrivers.Count; i++)
             {
                 try
                 {
-                    browser.Connect();
+                    webDrivers[i].browserClient.Connect();
+                    listView1.Items.Add(await webDrivers[i].CurrentWindowHandle(), i);
                 }
                 catch (Exception ex)
                 {
@@ -52,28 +55,58 @@ namespace Automatron
 
         private async void CloseBrowsersBtn_Click(object sender, EventArgs e)
         {
-            foreach (AsyncChromeDriver browser in browsers)
+            for (int i = 0; i < webDrivers.Count; i++)
             {
-                browser.Close();
-                //browsers.Remove(browser);
+                webDrivers[i].browserClient.Close();
             }
-            browsers.Clear();
-            //listBox1.Items.Clear();
+            webDrivers.Clear();
+            listView1.Clear();
         }
 
         private async void GotoBtn_Click(object sender, EventArgs e)
         {
-            foreach (AsyncChromeDriver browser in browsers)
+            List<System.Threading.CancellationTokenSource> cts = new List<System.Threading.CancellationTokenSource>();
+            
+            for (int i = 0; i < webDrivers.Count; i++)
+            {
+                cts.Add(new System.Threading.CancellationTokenSource());
+                cts[i].CancelAfter(TimeSpan.FromSeconds((double)proxyTimeoutNUD.Value));
+
+                try
+                {
+                    await GoToUrl(webDrivers[i], cts[i]);
+                }
+                catch (OperationCanceledException)
+                {
+                    webDrivers[i].browserClient.Close();
+                    webDrivers.RemoveAt(i);
+                    listView1.Items.RemoveAt(i);
+                }
+                catch (Exception)
+                {
+                    exeptionTBox.Text += "\r\nOpen failed.\r\n";
+                }
+            }
+        }
+
+        private async Task GoToUrl(WebDriver webDriver, System.Threading.CancellationTokenSource cts)
+        {
+            
+            //await webDriver.Options().Timeouts.SetPageLoad(TimeSpan.FromSeconds(1));
+            await webDriver.GoToUrl(tailURLTbox.Text, cts.Token);
+            cts.CancelAfter(TimeSpan.FromHours(1));
+        }
+
+        private async void clickBtn_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < webDrivers.Count; i++)
             {
                 try
                 {
-                    webDriver = new WebDriver(browser);
-                    await webDriver.Options().Timeouts.SetImplicitWait(TimeSpan.FromMinutes(3));
-
-                    webDriver.GoToUrl(tailURLTbox.Text);
-                    
-                    //var link = await webDriver.FindElementByClassName("uk");
-                    //await link.Click();
+                    await webDrivers[i].Options().Timeouts.SetImplicitWait(TimeSpan.FromMinutes(3));
+                    var link = await webDrivers[i].FindElementByPartialLinkText(linkTextTBox.Text);
+                    exeptionTBox.Text += link.ToString();
+                    await link.Click();
 
                 }
                 catch (Exception ex)
@@ -101,45 +134,18 @@ namespace Automatron
             dateTimePicker1.CustomFormat = "HH:mm:ss";
         }
 
-        private async void clickBtn_Click(object sender, EventArgs e)
-        {
-            foreach (AsyncChromeDriver browser in browsers)
-            {
-                try
-                {
-                    webDriver = new WebDriver(browser);
-                    await webDriver.Options().Timeouts.SetImplicitWait(TimeSpan.FromMinutes(3));
-
-                    var link = await webDriver.FindElementByPartialLinkText(linkTextTBox.Text);
-                    exeptionTBox.Text += link.ToString();
-                    //await link.Click();
-
-                    //var link = await webDriver.FindElementByClassName("uk");
-                    await link.Click();
-
-                }
-                catch (Exception ex)
-                {
-                    exeptionTBox.Text = ex.ToString();
-                }
-            }
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             clock = DateTime.Now;
-            mainTimer.Interval = 100;  //in milliseconds
-
+            mainTimer.Interval = 100;
             mainTimer.Tick += new EventHandler(this.MainTimer_Tick);
-
-            //start timer when form loads
-            mainTimer.Start();  //this will use t_Tick() method
+            mainTimer.Start();
 
         }
 
-        private void quitBtn_Click(object sender, EventArgs e)
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            Application.Exit();
+
         }
     }
 }

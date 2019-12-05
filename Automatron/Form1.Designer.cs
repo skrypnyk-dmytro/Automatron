@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.quitBtn = new System.Windows.Forms.Button();
             this.tailURLTbox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.instancesQtyNUD = new System.Windows.Forms.NumericUpDown();
@@ -43,26 +42,18 @@
             this.linkTextTBox = new System.Windows.Forms.TextBox();
             this.clickBtn = new System.Windows.Forms.Button();
             this.exeptionTBox = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.proxyTimeoutNUD = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.instancesQtyNUD)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.proxyTimeoutNUD)).BeginInit();
             this.SuspendLayout();
-            // 
-            // quitBtn
-            // 
-            this.quitBtn.Location = new System.Drawing.Point(591, 204);
-            this.quitBtn.Name = "quitBtn";
-            this.quitBtn.Size = new System.Drawing.Size(75, 23);
-            this.quitBtn.TabIndex = 0;
-            this.quitBtn.Text = "Quit";
-            this.quitBtn.UseVisualStyleBackColor = true;
-            this.quitBtn.Click += new System.EventHandler(this.quitBtn_Click);
             // 
             // tailURLTbox
             // 
             this.tailURLTbox.Location = new System.Drawing.Point(91, 49);
             this.tailURLTbox.Name = "tailURLTbox";
-            this.tailURLTbox.Size = new System.Drawing.Size(333, 20);
+            this.tailURLTbox.Size = new System.Drawing.Size(376, 20);
             this.tailURLTbox.TabIndex = 2;
             this.tailURLTbox.Text = "https://ru.lipsum.com/";
             // 
@@ -85,7 +76,7 @@
             0,
             0});
             this.instancesQtyNUD.Name = "instancesQtyNUD";
-            this.instancesQtyNUD.Size = new System.Drawing.Size(75, 26);
+            this.instancesQtyNUD.Size = new System.Drawing.Size(63, 26);
             this.instancesQtyNUD.TabIndex = 4;
             this.instancesQtyNUD.Value = new decimal(new int[] {
             1,
@@ -95,7 +86,7 @@
             // 
             // openBrowserBtn
             // 
-            this.openBrowserBtn.Location = new System.Drawing.Point(510, 204);
+            this.openBrowserBtn.Location = new System.Drawing.Point(253, 283);
             this.openBrowserBtn.Name = "openBrowserBtn";
             this.openBrowserBtn.Size = new System.Drawing.Size(75, 23);
             this.openBrowserBtn.TabIndex = 5;
@@ -105,7 +96,7 @@
             // 
             // closeBrowsersBtn
             // 
-            this.closeBrowsersBtn.Location = new System.Drawing.Point(91, 159);
+            this.closeBrowsersBtn.Location = new System.Drawing.Point(172, 283);
             this.closeBrowsersBtn.Name = "closeBrowsersBtn";
             this.closeBrowsersBtn.Size = new System.Drawing.Size(75, 23);
             this.closeBrowsersBtn.TabIndex = 6;
@@ -115,7 +106,7 @@
             // 
             // goToBtn
             // 
-            this.goToBtn.Location = new System.Drawing.Point(91, 101);
+            this.goToBtn.Location = new System.Drawing.Point(10, 283);
             this.goToBtn.Name = "goToBtn";
             this.goToBtn.Size = new System.Drawing.Size(75, 23);
             this.goToBtn.TabIndex = 7;
@@ -134,9 +125,9 @@
             // 
             // getTimeBtn
             // 
-            this.getTimeBtn.Location = new System.Drawing.Point(392, 10);
+            this.getTimeBtn.Location = new System.Drawing.Point(544, 49);
             this.getTimeBtn.Name = "getTimeBtn";
-            this.getTimeBtn.Size = new System.Drawing.Size(75, 23);
+            this.getTimeBtn.Size = new System.Drawing.Size(122, 23);
             this.getTimeBtn.TabIndex = 9;
             this.getTimeBtn.Text = "Get Time";
             this.getTimeBtn.UseVisualStyleBackColor = true;
@@ -144,8 +135,9 @@
             // 
             // timerLbl
             // 
+            this.timerLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.timerLbl.AutoSize = true;
-            this.timerLbl.Location = new System.Drawing.Point(510, 13);
+            this.timerLbl.Location = new System.Drawing.Point(541, 20);
             this.timerLbl.Name = "timerLbl";
             this.timerLbl.Size = new System.Drawing.Size(37, 13);
             this.timerLbl.TabIndex = 10;
@@ -156,7 +148,7 @@
             this.dateTimePicker1.CustomFormat = " ";
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(253, 10);
+            this.dateTimePicker1.Location = new System.Drawing.Point(544, 86);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.ShowUpDown = true;
             this.dateTimePicker1.Size = new System.Drawing.Size(122, 26);
@@ -176,13 +168,13 @@
             // 
             this.linkTextTBox.Location = new System.Drawing.Point(91, 75);
             this.linkTextTBox.Name = "linkTextTBox";
-            this.linkTextTBox.Size = new System.Drawing.Size(333, 20);
+            this.linkTextTBox.Size = new System.Drawing.Size(376, 20);
             this.linkTextTBox.TabIndex = 13;
             this.linkTextTBox.Text = "cliquez ici";
             // 
             // clickBtn
             // 
-            this.clickBtn.Location = new System.Drawing.Point(91, 130);
+            this.clickBtn.Location = new System.Drawing.Point(91, 283);
             this.clickBtn.Name = "clickBtn";
             this.clickBtn.Size = new System.Drawing.Size(75, 23);
             this.clickBtn.TabIndex = 15;
@@ -192,27 +184,63 @@
             // 
             // exeptionTBox
             // 
-            this.exeptionTBox.Location = new System.Drawing.Point(12, 253);
+            this.exeptionTBox.Location = new System.Drawing.Point(12, 312);
             this.exeptionTBox.Multiline = true;
             this.exeptionTBox.Name = "exeptionTBox";
             this.exeptionTBox.ReadOnly = true;
-            this.exeptionTBox.Size = new System.Drawing.Size(654, 182);
+            this.exeptionTBox.Size = new System.Drawing.Size(654, 123);
             this.exeptionTBox.TabIndex = 16;
             // 
-            // dataGridView1
+            // listView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(510, 48);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(156, 150);
-            this.dataGridView1.TabIndex = 18;
+            this.listView1.Location = new System.Drawing.Point(10, 101);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(457, 176);
+            this.listView1.TabIndex = 17;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.List;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(187, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(74, 13);
+            this.label3.TabIndex = 19;
+            this.label3.Text = "Proxy Timeout";
+            // 
+            // proxyTimeoutNUD
+            // 
+            this.proxyTimeoutNUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.proxyTimeoutNUD.Location = new System.Drawing.Point(267, 12);
+            this.proxyTimeoutNUD.Maximum = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
+            this.proxyTimeoutNUD.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.proxyTimeoutNUD.Name = "proxyTimeoutNUD";
+            this.proxyTimeoutNUD.Size = new System.Drawing.Size(63, 26);
+            this.proxyTimeoutNUD.TabIndex = 18;
+            this.proxyTimeoutNUD.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.proxyTimeoutNUD.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(678, 447);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.proxyTimeoutNUD);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.exeptionTBox);
             this.Controls.Add(this.clickBtn);
             this.Controls.Add(this.linkTextLbl);
@@ -227,20 +255,18 @@
             this.Controls.Add(this.instancesQtyNUD);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tailURLTbox);
-            this.Controls.Add(this.quitBtn);
             this.Name = "MainForm";
-            this.Text = "Automatron";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "s";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.instancesQtyNUD)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.proxyTimeoutNUD)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button quitBtn;
         private System.Windows.Forms.TextBox tailURLTbox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown instancesQtyNUD;
@@ -255,7 +281,9 @@
         private System.Windows.Forms.TextBox linkTextTBox;
         private System.Windows.Forms.Button clickBtn;
         private System.Windows.Forms.TextBox exeptionTBox;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown proxyTimeoutNUD;
     }
 }
 
